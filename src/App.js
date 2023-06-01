@@ -1,4 +1,7 @@
-const {useState, useEffect} = React;
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
+
 function App(){
   const [todolist, setTodolist] = useState([]);
   useEffect(()=>{
@@ -10,7 +13,7 @@ function App(){
     axios.post("https://jsonplaceholder.typicode.com/todos",{
       id: "20"
     })
-    .then(res=>setTodolist([...todolist,res.data]))
+    .then(res=>{setTodolist([...todolist,res.data]);alert(res.status)})
     document.getElementById("input").value=""
   }
   return (
@@ -25,6 +28,4 @@ function App(){
   )
 }
 
-
-
-ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+export default App;
